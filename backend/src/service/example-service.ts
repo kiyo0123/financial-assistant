@@ -1,6 +1,6 @@
 import {SquidService, webhook, WebhookRequest} from '@squidcloud/backend';
-import * as fs from "node:fs";
-import * as path from "node:path";
+import * as fs from "fs";
+import * as path from "path";
 import {randomBytes} from 'crypto';
 
 export interface ProfitAndLossRecord {
@@ -34,7 +34,7 @@ export class ExampleService extends SquidService {
     private readonly profitsAndLossesCollection = this.squid.collection<ProfitAndLossRecord>('ProfitsAndLosses');
 
 
-    // @webhook('loadData')
+    @webhook('loadData')
     async loadCsv(): Promise<ProfitAndLossRecord[][]> {
         // 1. Read raw CSV
         const raw = fs.readFileSync(
